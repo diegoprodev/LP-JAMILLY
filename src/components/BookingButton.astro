@@ -1,0 +1,41 @@
+---
+import { BOOKING, WHATSAPP_URL } from '@/config';
+
+interface Props {
+  class?: string;
+  label?: string;
+  ariaLabel?: string;
+}
+
+const {
+  class: className = 'btn-primary',
+  label = 'Agendar Avaliação',
+  ariaLabel,
+} = Astro.props;
+
+const isCalReady = !!BOOKING.calComUsername;
+const calLink = `${BOOKING.calComUsername}/${BOOKING.calComEventSlug}`;
+const calConfig = JSON.stringify({ layout: 'month_view', theme: 'dark' });
+---
+
+{isCalReady ? (
+  <button
+    class={className}
+    type="button"
+    data-cal-link={calLink}
+    data-cal-config={calConfig}
+    aria-label={ariaLabel ?? label}
+  >
+    {label}
+  </button>
+) : (
+  <a
+    href={WHATSAPP_URL}
+    class={className}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={ariaLabel ?? label}
+  >
+    {label}
+  </a>
+)}

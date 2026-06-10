@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [react()],
-  site: 'https://jamillykarla.com.br',
+  site: 'https://jamilly.arckosia.com.br',
   vite: {
     plugins: [tailwindcss()],
     resolve: {

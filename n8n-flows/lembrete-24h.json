@@ -1,0 +1,146 @@
+{
+  "name": "Jamilly — Lembrete 24h antes da consulta",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * *"
+            }
+          ]
+        }
+      },
+      "id": "cron-diario",
+      "name": "Todo dia às 10h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "notes": "Executa todo dia às 10h (horário de Brasília)\nAjustar timezone do n8n para America/Fortaleza"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "calendarId": "EMAIL-DA-JAMILLY@gmail.com",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {
+          "timeMin": "={{ $today.plus({days: 1}).startOf('day').toISO() }}",
+          "timeMax": "={{ $today.plus({days: 1}).endOf('day').toISO() }}",
+          "singleEvents": true,
+          "orderBy": "startTime"
+        }
+      },
+      "id": "google-calendar-amanha",
+      "name": "Eventos de amanhã",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [460, 300],
+      "notes": "Conectar Google Calendar com credencial OAuth da conta da Jamilly"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $json.attendees?.length > 0 }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "equal" }
+            }
+          ]
+        }
+      },
+      "id": "filter-tem-paciente",
+      "name": "Tem paciente?",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "notes": "Filtra apenas eventos com participantes externos (pacientes)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "assign-nome",
+              "name": "nome",
+              "value": "={{ $json.attendees.find(a => !a.organizer)?.displayName || 'paciente' }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-email",
+              "name": "email",
+              "value": "={{ $json.attendees.find(a => !a.organizer)?.email }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-hora",
+              "name": "hora",
+              "value": "={{ DateTime.fromISO($json.start.dateTime).setLocale('pt-BR').toFormat('HH:mm') }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-msg",
+              "name": "mensagem",
+              "value": "=Olá, {{ $json.nome }}! 😊\n\nPassando para lembrar: amanhã você tem avaliação com a *Dra. Jamilly Karla* às *{{ $json.hora }}*.\n\nPrecisa remarcar ou tem alguma dúvida? É só responder aqui. Até amanhã! ✨\n\n_Jamilly Karla — Harmonização Facial_",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-lembrete",
+      "name": "Montar lembrete",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [900, 300],
+      "notes": "O número de telefone precisa estar no evento do Google Calendar.\nNo Cal.com, o phone field do attendee é enviado via webhook e salvo no evento."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://localhost:8080/message/sendText/NOME-DA-INSTANCIA",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "SUA-API-KEY-EVOLUTION" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "number": "={{ $json.telefone }}",
+          "text": "={{ $json.mensagem }}"
+        },
+        "options": {}
+      },
+      "id": "whatsapp-lembrete",
+      "name": "WhatsApp — Lembrete",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 300],
+      "notes": "ATENÇÃO: o telefone precisa ser salvo em um campo custom do Google Calendar\nou recuperado do banco de dados (ex: Supabase/Airtable) via email do paciente.\nVer nota técnica abaixo."
+    }
+  ],
+  "connections": {
+    "Todo dia às 10h": {
+      "main": [[{ "node": "Eventos de amanhã", "type": "main", "index": 0 }]]
+    },
+    "Eventos de amanhã": {
+      "main": [[{ "node": "Tem paciente?", "type": "main", "index": 0 }]]
+    },
+    "Tem paciente?": {
+      "main": [[{ "node": "Montar lembrete", "type": "main", "index": 0 }]]
+    },
+    "Montar lembrete": {
+      "main": [[{ "node": "WhatsApp — Lembrete", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": ["jamilly-karla", "lembrete", "whatsapp"],
+  "notes": "NOTA TÉCNICA — Telefone no lembrete:\nO Google Calendar não armazena telefone nos attendees.\nSolução: no fluxo de confirmação (agendamento-confirmacao.json), salvar\n{email, telefone, nome, dataHora} em Airtable/Supabase.\nNeste fluxo, após 'Eventos de amanhã', adicionar node 'Airtable' ou 'Supabase'\npara buscar o telefone pelo email do attendee."
+}

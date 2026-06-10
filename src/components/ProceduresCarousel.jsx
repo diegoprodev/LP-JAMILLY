@@ -1,15 +1,6 @@
 import React from 'react';
 import { User, Syringe, Smile, Sparkles, Activity, Droplet, Focus, Sun } from 'lucide-react';
 
-// Gold project token: #b08a3c (matches global CSS --color-gold)
-const GOLD = '#b08a3c';
-const GOLD_30 = 'rgba(176,138,60,0.3)';
-const GOLD_40 = 'rgba(176,138,60,0.4)';
-const GOLD_10 = 'rgba(176,138,60,0.1)';
-const GOLD_15 = 'rgba(176,138,60,0.15)';
-const GOLD_05 = 'rgba(176,138,60,0.05)';
-const GOLD_80 = 'rgba(176,138,60,0.8)';
-
 const ProcedureCard = ({ name, description, icon: Icon }) => (
   <div className="
     relative w-80 h-64 mx-4
@@ -17,22 +8,19 @@ const ProcedureCard = ({ name, description, icon: Icon }) => (
     rounded-sm overflow-hidden
     border border-white/5 bg-white/[0.02] backdrop-blur-md
     transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
+    hover:border-gold/30
     hover:bg-white/[0.04] hover:shadow-[0_15px_40px_-10px_rgba(176,138,60,0.15)]
-  "
-  style={{ '--hover-border': GOLD_30 }}
-  onMouseEnter={e => e.currentTarget.style.borderColor = GOLD_30}
-  onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'}
-  >
+  ">
     {/* Feixe de luz dourado no topo — aparece no hover */}
     <div
       className="absolute top-0 left-0 w-full h-[1px] scale-x-0 opacity-0 group-hover/card:scale-x-100 group-hover/card:opacity-100 transition-all duration-1000 ease-out"
-      style={{ background: `linear-gradient(to right, transparent, ${GOLD}, transparent)` }}
+      style={{ background: 'linear-gradient(to right, transparent, #b08a3c, transparent)' }}
     />
 
     {/* Glow interno sutil */}
     <div
       className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition duration-700 pointer-events-none"
-      style={{ background: `linear-gradient(to bottom, transparent, ${GOLD_05})` }}
+      style={{ background: 'linear-gradient(to bottom, transparent, rgba(176,138,60,0.05))' }}
     />
 
     {/* Ícone + título — desliza para cima no hover */}
@@ -41,17 +29,12 @@ const ProcedureCard = ({ name, description, icon: Icon }) => (
       transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
       group-hover/card:-translate-y-8
     ">
-      <div
-        className="mb-6 p-4 rounded-full border border-white/10 bg-white/5 transition-all duration-700 group-hover/card:bg-[rgba(176,138,60,0.1)]"
-        style={{ '--hover-border-icon': GOLD_40 }}
-        onMouseEnter={e => e.currentTarget.style.borderColor = GOLD_40}
-        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
-      >
+      <div className="mb-6 p-4 rounded-full border border-white/10 bg-white/5 transition-all duration-700 group-hover/card:border-gold/40 group-hover/card:bg-gold/10">
         <Icon
           strokeWidth={1}
           size={28}
           className="transition-all duration-700 group-hover/card:scale-110"
-          style={{ color: GOLD_80 }}
+          style={{ color: 'rgba(176,138,60,0.8)' }}
         />
       </div>
       <h3
@@ -182,7 +165,7 @@ export default function ProceduresCarousel() {
         <div className="text-center space-y-4 px-6">
           <p
             className="text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold"
-            style={{ fontFamily: "'Inter', sans-serif", color: GOLD }}
+            style={{ fontFamily: "'Inter', sans-serif", color: '#b08a3c' }}
           >
             Especialidades
           </p>

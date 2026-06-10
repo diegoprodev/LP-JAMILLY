@@ -1,5 +1,7 @@
 ---
-import { WHATSAPP_URL } from '@/config';
+import { BOOKING, WHATSAPP_URL } from '@/config';
+
+const calLink = `${BOOKING.calComUsername}/${BOOKING.calComEventSlug}`;
 ---
 
 <header id="site-header" role="banner">
@@ -26,15 +28,27 @@ import { WHATSAPP_URL } from '@/config';
       <li><a href="#localizacao">Localização</a></li>
     </ul>
 
-    <a
-      href={WHATSAPP_URL}
-      class="nav-cta"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Agendar avaliação pelo WhatsApp"
-    >
-      Agendar Avaliação
-    </a>
+    {BOOKING.calComUsername ? (
+      <button
+        class="nav-cta"
+        type="button"
+        data-cal-link={calLink}
+        data-cal-config='{"layout":"month_view","theme":"dark"}'
+        aria-label="Agendar avaliação com a Dra. Jamilly Karla"
+      >
+        Agendar Avaliação
+      </button>
+    ) : (
+      <a
+        href={WHATSAPP_URL}
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Agendar avaliação com a Dra. Jamilly Karla"
+      >
+        Agendar Avaliação
+      </a>
+    )}
   </nav>
 </header>
 

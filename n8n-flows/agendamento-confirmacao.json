@@ -1,0 +1,205 @@
+{
+  "name": "Jamilly — Confirmação de Agendamento (Cal.com → WhatsApp)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agendamento-calcom",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-calcom",
+      "name": "Webhook Cal.com",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "agendamento-calcom",
+      "notes": "URL: https://SEU-N8N/webhook/agendamento-calcom\nConfigurar no Cal.com: Settings → Developer → Webhooks"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false },
+          "conditions": [
+            {
+              "id": "cond-created",
+              "leftValue": "={{ $json.body.triggerEvent }}",
+              "rightValue": "BOOKING_CREATED",
+              "operator": { "type": "string", "operation": "equals" }
+            }
+          ]
+        }
+      },
+      "id": "switch-event",
+      "name": "Tipo de evento",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [460, 300],
+      "notes": "Ramifica por tipo: criação, cancelamento, remarcação"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "assign-nome",
+              "name": "nome",
+              "value": "={{ $json.body.attendees[0].name }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-telefone",
+              "name": "telefone",
+              "value": "={{ $json.body.attendees[0].phone }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-data",
+              "name": "dataHora",
+              "value": "={{ DateTime.fromISO($json.body.startTime).setLocale('pt-BR').toFormat(\"dd/MM/yyyy 'às' HH:mm\") }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-msg",
+              "name": "mensagem",
+              "value": "=Olá, {{ $json.nome }}! ✨\n\nSeu agendamento com a *Dra. Jamilly Karla* foi confirmado!\n\n📅 *Data:* {{ $json.dataHora }}\n📍 *Local:* Confirmaremos o endereço em breve\n\nQualquer dúvida, estamos aqui. Até lá! 😊\n\n_Jamilly Karla — Harmonização Facial_",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-confirmacao",
+      "name": "Montar mensagem de confirmação",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [680, 200],
+      "notes": "Adaptar texto conforme padrão de comunicação da Jamilly"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "assign-nome-c",
+              "name": "nome",
+              "value": "={{ $json.body.attendees[0].name }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-tel-c",
+              "name": "telefone",
+              "value": "={{ $json.body.attendees[0].phone }}",
+              "type": "string"
+            },
+            {
+              "id": "assign-msg-c",
+              "name": "mensagem",
+              "value": "=Olá, {{ $json.nome }}. Informamos que seu agendamento com a *Dra. Jamilly Karla* foi cancelado.\n\nPara reagendar, acesse: https://cal.com/SEU-USERNAME/avaliacao-facial\n\nQualquer dúvida, fale conosco pelo WhatsApp. 💛",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "set-cancelamento",
+      "name": "Montar mensagem de cancelamento",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://localhost:8080/message/sendText/NOME-DA-INSTANCIA",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "SUA-API-KEY-EVOLUTION" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "number": "={{ $json.telefone.replace(/[^0-9]/g, '') }}",
+          "text": "={{ $json.mensagem }}"
+        },
+        "options": {}
+      },
+      "id": "whatsapp-confirmacao",
+      "name": "WhatsApp — Confirmação",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 200],
+      "notes": "Evolution API local. Trocar URL/apikey conforme sua instalação.\nPara WAHA: POST http://localhost:3000/api/sendText\nPara Z-API: POST https://api.z-api.io/instances/ID/token/TOKEN/send-text"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://localhost:8080/message/sendText/NOME-DA-INSTANCIA",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "SUA-API-KEY-EVOLUTION" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "number": "={{ $json.telefone.replace(/[^0-9]/g, '') }}",
+          "text": "={{ $json.mensagem }}"
+        },
+        "options": {}
+      },
+      "id": "whatsapp-cancelamento",
+      "name": "WhatsApp — Cancelamento",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }",
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Responder 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Cal.com": {
+      "main": [[{ "node": "Tipo de evento", "type": "main", "index": 0 }]]
+    },
+    "Tipo de evento": {
+      "main": [
+        [{ "node": "Montar mensagem de confirmação", "type": "main", "index": 0 }],
+        [{ "node": "Montar mensagem de cancelamento", "type": "main", "index": 0 }]
+      ]
+    },
+    "Montar mensagem de confirmação": {
+      "main": [[{ "node": "WhatsApp — Confirmação", "type": "main", "index": 0 }]]
+    },
+    "Montar mensagem de cancelamento": {
+      "main": [[{ "node": "WhatsApp — Cancelamento", "type": "main", "index": 0 }]]
+    },
+    "WhatsApp — Confirmação": {
+      "main": [[{ "node": "Responder 200", "type": "main", "index": 0 }]]
+    },
+    "WhatsApp — Cancelamento": {
+      "main": [[{ "node": "Responder 200", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["jamilly-karla", "agendamento", "whatsapp"],
+  "triggerCount": 0,
+  "updatedAt": "2026-06-10T00:00:00.000Z",
+  "versionId": "1"
+}

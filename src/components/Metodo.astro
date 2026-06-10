@@ -1,5 +1,6 @@
 ---
-import { METHOD_STEPS, WHATSAPP_URL } from '@/config';
+import { METHOD_STEPS } from '@/config';
+import BookingButton from '@/components/BookingButton.astro';
 ---
 
 <section id="metodo" aria-label="O Método FullFaceJK">
@@ -28,15 +29,10 @@ import { METHOD_STEPS, WHATSAPP_URL } from '@/config';
     </div>
 
     <div class="metodo-cta animate-on-scroll">
-      <a
-        href={WHATSAPP_URL}
-        class="btn-primary"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Agendar avaliação com o Método FullFaceJK pelo WhatsApp"
-      >
-        Agendar minha avaliação
-      </a>
+      <BookingButton
+        label="Agendar minha avaliação"
+        ariaLabel="Agendar avaliação com o Método FullFaceJK"
+      />
     </div>
   </div>
 </section>

@@ -1,5 +1,5 @@
 ---
-import { WHATSAPP_URL } from '@/config';
+import BookingButton from '@/components/BookingButton.astro';
 ---
 
 <section id="hero" data-theme="dark" aria-label="Apresentação da Jamilly Karla">
@@ -60,15 +60,10 @@ import { WHATSAPP_URL } from '@/config';
       </p>
 
       <div class="hero-ctas animate-on-scroll stagger-4">
-        <a
-          href={WHATSAPP_URL}
-          class="btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Agendar avaliação com a Dra. Jamilly Karla pelo WhatsApp"
-        >
-          Agendar Avaliação
-        </a>
+        <BookingButton
+          label="Agendar Avaliação"
+          ariaLabel="Agendar avaliação com a Dra. Jamilly Karla"
+        />
         <a href="#metodo" class="btn-ghost" aria-label="Conhecer o Método FullFaceJK">
           Conhecer o Método
         </a>

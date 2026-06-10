@@ -8,7 +8,7 @@ export const SITE = {
   instagram: 'https://www.instagram.com/dra.jamillykarla_/',
   instagramHandle: '@dra.jamillykarla_',
   googleReviews: 'https://share.google/4UP5DkWNe9wqUc1mk',
-  canonicalUrl: 'https://jamillykarla.com.br',
+  canonicalUrl: 'https://jamilly.arckosia.com.br',
 } as const;
 
 export const LOCATIONS = [
@@ -120,3 +120,22 @@ export const TESTIMONIALS = [
 ] as const;
 
 export const WHATSAPP_URL = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
+
+/**
+ * Agendamento via Cal.com + Google Calendar + n8n
+ *
+ * Preencher quando a cliente configurar:
+ *   1. Criar conta gratuita em cal.com
+ *   2. Conectar Google Calendar da Jamilly
+ *   3. Criar event type "avaliacao-facial" (30 min, disponibilidade real)
+ *   4. Ativar webhook: Settings → Developer → Webhooks → POST para URL do n8n
+ *   5. Preencher calComUsername e n8nWebhookUrl abaixo
+ *
+ * Enquanto vazio → botões de agendamento redirecionam ao WhatsApp (comportamento atual)
+ */
+export const BOOKING = {
+  calComUsername: '',          // ex: 'jamillykarla'
+  calComEventSlug: 'avaliacao-facial',
+  n8nWebhookUrl: '',           // ex: 'https://n8n.seudominio.com/webhook/agendamento'
+  calBrandColor: '#b08a3c',
+} as const;

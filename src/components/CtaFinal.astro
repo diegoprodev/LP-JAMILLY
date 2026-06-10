@@ -1,5 +1,5 @@
 ---
-import { WHATSAPP_URL } from '@/config';
+import BookingButton from '@/components/BookingButton.astro';
 ---
 
 <section id="cta-final" data-theme="dark" aria-label="Agende sua avaliação com a Dra. Jamilly Karla">
@@ -28,15 +28,11 @@ import { WHATSAPP_URL } from '@/config';
     </p>
 
     <div class="cta-action animate-on-scroll stagger-3">
-      <a
-        href={WHATSAPP_URL}
+      <BookingButton
         class="btn-primary cta-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Agendar avaliação com a Dra. Jamilly Karla pelo WhatsApp"
-      >
-        Agendar avaliação
-      </a>
+        label="Agendar avaliação"
+        ariaLabel="Agendar avaliação com a Dra. Jamilly Karla"
+      />
       <p class="cta-reassurance">Resposta em até 24 horas · Atendimento personalizado</p>
     </div>
   </div>
