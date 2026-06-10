@@ -250,3 +250,23 @@ body {
   color: #b08a3c;
   letter-spacing: 2px;
 }
+
+/* ── Scrollbar dourado premium ────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0906;
+}
+::-webkit-scrollbar-thumb {
+  background: #b08a3c;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a853;
+}
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #b08a3c #0b0906;
+}
