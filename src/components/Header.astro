@@ -1,0 +1,220 @@
+---
+import { WHATSAPP_URL } from '@/config';
+---
+
+<header id="site-header" role="banner">
+  <nav class="nav-inner" aria-label="Navegação principal">
+    <a href="#hero" class="logo-link" aria-label="Jamilly Karla — página inicial">
+      <img
+        src="/images/logo-jamilly.png"
+        alt="Jamilly Karla Centro de Estética e Saúde"
+        height="44"
+        width="auto"
+        loading="eager"
+        fetchpriority="high"
+        class="logo-img"
+        onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex';"
+      />
+      <span id="logo-fallback" class="logo-fallback" style="display:none" aria-hidden="true">
+        Jamilly Karla
+      </span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#procedimentos">Procedimentos</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#localizacao">Localização</a></li>
+    </ul>
+
+    <a
+      href={WHATSAPP_URL}
+      class="nav-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Agendar avaliação pelo WhatsApp"
+    >
+      Agendar Avaliação
+    </a>
+  </nav>
+</header>
+
+<style>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  /* ── Transparent state (on dark hero) ─────── */
+  #site-header:not(.scrolled) {
+    background: linear-gradient(to bottom, rgba(11,9,6,0.72) 0%, transparent 100%);
+  }
+
+  /* ── Scrolled state (white bg) ────────────── */
+  #site-header.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 24px rgba(0, 0, 0, 0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* ── Logo ─────────────────────────────────── */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+    /* On dark hero: invert if logo is dark */
+    filter: brightness(0) invert(1);
+    transition: filter 0.35s ease;
+  }
+
+  #site-header.scrolled .logo-img {
+    filter: none;
+  }
+
+  .logo-fallback {
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.9);
+    align-items: center;
+    white-space: nowrap;
+    transition: color 0.35s ease;
+  }
+
+  #site-header.scrolled .logo-fallback {
+    color: #050505;
+  }
+
+  /* ── Nav links ────────────────────────────── */
+  .nav-links {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 36px;
+  }
+
+  /* Default (dark hero): white links */
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-links a:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  /* Scrolled state: dark links */
+  #site-header.scrolled .nav-links a {
+    color: rgba(5, 5, 5, 0.65);
+  }
+
+  #site-header.scrolled .nav-links a:hover {
+    color: #050505;
+  }
+
+  .nav-links a:focus-visible {
+    outline: 2px solid #b08a3c;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── CTA button ───────────────────────────── */
+  .nav-cta {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 20px;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    /* Default: gold outline on dark bg */
+    background: transparent;
+    color: #b08a3c;
+    border: 1px solid rgba(176, 138, 60, 0.6);
+  }
+
+  .nav-cta:hover {
+    background: #b08a3c;
+    color: #ffffff;
+    border-color: #b08a3c;
+  }
+
+  /* Scrolled: solid gold button */
+  #site-header.scrolled .nav-cta {
+    background: #b08a3c;
+    color: #ffffff;
+    border-color: #b08a3c;
+  }
+
+  #site-header.scrolled .nav-cta:hover {
+    background: #8b6b2a;
+    border-color: #8b6b2a;
+  }
+
+  .nav-cta:focus-visible {
+    outline: 2px solid #b08a3c;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+    .nav-cta {
+      display: inline-flex;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+
+  function handleScroll() {
+    if (window.scrollY > 40) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+</script>

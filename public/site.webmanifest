@@ -1,0 +1,21 @@
+{
+  "name": "Jamilly Karla Centro de Estética e Saúde",
+  "short_name": "Dra. Jamilly",
+  "description": "Método FullFaceJK® — Harmonização facial personalizada em João Pessoa e Santa Rita, PB.",
+  "icons": [
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#050505",
+  "background_color": "#050505",
+  "display": "standalone",
+  "start_url": "/"
+}

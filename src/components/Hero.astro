@@ -1,0 +1,262 @@
+---
+import { WHATSAPP_URL } from '@/config';
+---
+
+<section id="hero" aria-label="Apresentação da Dra. Jamilly Karla">
+
+  <!-- Photo: absolute-positioned right side, blends via gradient -->
+  <img
+    src="/images/JAMILLY1.webp"
+    alt="Dra. Jamilly Karla, médica especialista em harmonização facial, em seu consultório em Santa Rita e João Pessoa PB"
+    class="hero-photo-bg"
+    loading="eager"
+    fetchpriority="high"
+    width="900"
+    height="900"
+    aria-hidden="true"
+  />
+
+  <!-- Left-side gradient: blends photo into background -->
+  <div class="hero-gradient-left" aria-hidden="true"></div>
+  <!-- Bottom gradient: grounds the section into the next -->
+  <div class="hero-gradient-bottom" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="overline hero-overline animate-on-scroll">Método FullFaceJK®</p>
+
+      <h1 class="hero-title animate-on-scroll stagger-1">
+        Harmonização<br />
+        <em>facial que</em><br />
+        <span class="text-gold-gradient">respeita seu rosto.</span>
+      </h1>
+
+      <p class="hero-subtitle animate-on-scroll stagger-2">
+        Planejamento facial personalizado para mulheres que buscam
+        equilíbrio, leveza e precisão em cada detalhe.
+      </p>
+
+      <p class="hero-body animate-on-scroll stagger-3">
+        Atendimento individualizado em João Pessoa e Santa Rita,
+        com foco em harmonização facial, rejuvenescimento e valorização
+        dos traços de cada paciente.
+      </p>
+
+      <div class="hero-ctas animate-on-scroll stagger-4">
+        <a
+          href={WHATSAPP_URL}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Agendar avaliação com a Dra. Jamilly Karla pelo WhatsApp"
+        >
+          Agendar Avaliação
+        </a>
+        <a href="#metodo" class="btn-ghost" aria-label="Conhecer o Método FullFaceJK">
+          Conhecer o Método
+        </a>
+      </div>
+
+      <div class="hero-proof animate-on-scroll stagger-5">
+        <span class="stars" aria-label="5 estrelas">★★★★★</span>
+        <span class="proof-text">Avaliada no Google · João Pessoa e Santa Rita, PB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtle scroll indicator -->
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<style>
+  #hero {
+    /* Warm near-black — feels premium, not flat */
+    background: radial-gradient(ellipse at 72% 45%, #1c1510 0%, #0b0906 55%, #080604 100%);
+    min-height: 100svh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-top: 88px;
+    padding-bottom: 80px;
+  }
+
+  /* ── Photo layer ──────────────────────────── */
+  .hero-photo-bg {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 56%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── Gradient overlays ────────────────────── */
+  .hero-gradient-left {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 62%;
+    /* Strong fade on left, transparent on right — makes photo "emerge" from bg */
+    background: linear-gradient(
+      to right,
+      #0b0906 0%,
+      rgba(11, 9, 6, 0.92) 18%,
+      rgba(11, 9, 6, 0.6) 38%,
+      rgba(11, 9, 6, 0.15) 62%,
+      rgba(11, 9, 6, 0) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-gradient-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    background: linear-gradient(to bottom, transparent, #0b0906);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ── Content ──────────────────────────────── */
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    max-width: 560px;
+  }
+
+  .hero-overline {
+    color: #b08a3c;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 6vw, 5.25rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0 0 28px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.68);
+    margin: 0 0 14px;
+  }
+
+  .hero-body {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.38);
+    margin: 0 0 40px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stars {
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    color: #b08a3c;
+  }
+
+  .proof-text {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--font-body);
+    letter-spacing: 0.04em;
+  }
+
+  /* Scroll indicator */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, #b08a3c, transparent);
+    animation: scrollPulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.7; }
+  }
+
+  /* ── Desktop ──────────────────────────────── */
+  @media (min-width: 900px) {
+    .hero-photo-bg {
+      display: block;
+    }
+
+    .hero-gradient-left {
+      display: block;
+    }
+
+    .hero-ctas {
+      flex-wrap: nowrap;
+    }
+  }
+
+  /* ── Mobile ───────────────────────────────── */
+  @media (max-width: 599px) {
+    #hero {
+      padding-bottom: 72px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+    }
+
+    .hero-ctas a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

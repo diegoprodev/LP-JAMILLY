@@ -1,0 +1,106 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  class="cookie-banner"
+  role="alertdialog"
+  aria-label="Aviso de uso de cookies"
+  aria-live="polite"
+>
+  <p class="cookie-text">
+    Usamos cookies para melhorar sua experiência. Ao continuar navegando, você
+    concorda com nossa{' '}
+    <a href="/politica-de-privacidade" class="cookie-link">Política de Privacidade</a>.
+  </p>
+  <button
+    id="cookie-accept"
+    class="cookie-btn"
+    type="button"
+    aria-label="Aceitar cookies e fechar aviso"
+  >
+    Aceitar
+  </button>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #050505;
+    border-top: 1px solid rgba(176, 138, 60, 0.25);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 200;
+    flex-wrap: wrap;
+  }
+
+  .cookie-banner.hidden {
+    display: none;
+  }
+
+  .cookie-text {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .cookie-link {
+    color: #b08a3c;
+    text-decoration: none;
+  }
+
+  .cookie-link:hover {
+    text-decoration: underline;
+  }
+
+  .cookie-btn {
+    background: #b08a3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    min-height: 44px;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn:hover {
+    background: #8b6b2a;
+  }
+
+  .cookie-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+</style>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+
+  if (localStorage.getItem('cookie-consent') === 'accepted') {
+    banner?.classList.add('hidden');
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    banner?.classList.add('hidden');
+  });
+</script>

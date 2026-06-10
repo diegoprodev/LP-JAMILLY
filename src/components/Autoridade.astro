@@ -1,0 +1,159 @@
+---
+import { WHATSAPP_URL } from '@/config';
+---
+
+<section id="autoridade" aria-label="Sobre a Dra. Jamilly Karla">
+  <div class="section-inner">
+    <div class="autoridade-image animate-on-scroll">
+      <img
+        src="/images/JAMILLY1.webp"
+        alt="Dra. Jamilly Karla em seu consultório, médica especialista em harmonização facial em Santa Rita e João Pessoa"
+        class="autoridade-photo"
+        loading="lazy"
+        width="580"
+        height="640"
+      />
+    </div>
+
+    <div class="autoridade-content">
+      <p class="overline animate-on-scroll">Quem é a Dra. Jamilly Karla</p>
+
+      <h2 class="heading-display autoridade-title animate-on-scroll stagger-1">
+        Um rosto bem cuidado não parece alterado.<br />
+        <em>Parece descansado, leve e coerente.</em>
+      </h2>
+
+      <p class="autoridade-text animate-on-scroll stagger-2">
+        A Dra. Jamilly Karla trabalha com planejamento facial individualizado,
+        considerando estrutura, proporção, sustentação e envelhecimento de cada paciente.
+        A proposta é construir resultados elegantes, seguros e compatíveis com a identidade
+        de cada rosto.
+      </p>
+
+      <div class="credentials animate-on-scroll stagger-3" role="list" aria-label="Credenciais profissionais">
+        <div class="credential-item card-gold-accent" role="listitem">
+          <span class="credential-label">Especialidade</span>
+          <span class="credential-value">Harmonização Facial</span>
+        </div>
+        <div class="credential-item card-gold-accent" role="listitem">
+          <span class="credential-label">Atuação</span>
+          <span class="credential-value">João Pessoa e Santa Rita, PB</span>
+        </div>
+        <div class="credential-item card-gold-accent" role="listitem">
+          <span class="credential-label">Abordagem</span>
+          <span class="credential-value">Planejamento Facial Completo</span>
+        </div>
+        <div class="credential-item card-gold-accent" role="listitem">
+          <span class="credential-label">Método</span>
+          <span class="credential-value">FullFaceJK®</span>
+        </div>
+      </div>
+
+      <a href="#metodo" class="btn-ghost-dark animate-on-scroll stagger-4" aria-label="Entender o Método FullFaceJK">
+        Conhecer o método
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #autoridade {
+    background: #f7f2ea;
+    padding: 100px 0;
+  }
+
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .autoridade-image {
+    flex: 0 0 auto;
+    width: 44%;
+    max-width: 520px;
+    display: none;
+  }
+
+  .autoridade-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .autoridade-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .autoridade-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+    color: #050505;
+    margin: 12px 0 24px;
+  }
+
+  .autoridade-title em {
+    font-style: italic;
+    color: #6b6b6b;
+  }
+
+  .autoridade-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #6b6b6b;
+    margin: 0 0 40px;
+    max-width: 520px;
+  }
+
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .credential-item {
+    background: #ffffff;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .credential-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b08a3c;
+  }
+
+  .credential-value {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #050505;
+  }
+
+  @media (min-width: 900px) {
+    .autoridade-image {
+      display: block;
+    }
+  }
+
+  @media (max-width: 599px) {
+    #autoridade {
+      padding: 64px 0;
+    }
+
+    .credentials {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

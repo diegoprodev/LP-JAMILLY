@@ -1,0 +1,107 @@
+---
+import { SEO, SITE, LOCATIONS } from '@/config';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = SEO.title,
+  description = SEO.description,
+} = Astro.props;
+
+const canonicalUrl = SITE.canonicalUrl;
+
+const schemaOrg = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'HealthAndBeautyBusiness'],
+  name: SITE.name,
+  description: SEO.description,
+  url: canonicalUrl,
+  telephone: '+5583993548045',
+  image: `${canonicalUrl}/images/og-image.jpg`,
+  priceRange: '$$$$',
+  address: [
+    {
+      '@type': 'PostalAddress',
+      streetAddress: 'R. Sen. Adalberto Ribeiro, 2 - Tibiri',
+      addressLocality: 'Santa Rita',
+      addressRegion: 'PB',
+      postalCode: '58304-500',
+      addressCountry: 'BR',
+    },
+    {
+      '@type': 'PostalAddress',
+      addressLocality: 'João Pessoa',
+      addressRegion: 'PB',
+      addressCountry: 'BR',
+    },
+  ],
+  sameAs: [SITE.instagram, SITE.googleReviews],
+  hasMap: LOCATIONS[0].mapsUrl,
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  },
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={SEO.keywords} />
+    <meta name="author" content={SITE.doctorName} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${canonicalUrl}${SEO.ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={SITE.name} />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${canonicalUrl}${SEO.ogImage}`} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#050505" />
+
+    <!-- Fonts: preconnect first, then load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <slot />
+  </body>
+</html>

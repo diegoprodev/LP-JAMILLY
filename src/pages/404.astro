@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { WHATSAPP_URL } from '@/config';
+---
+
+<BaseLayout
+  title="Página não encontrada | Jamilly Karla"
+  description="A página que você procura não existe. Volte ao início."
+>
+  <main id="main-content" class="not-found">
+    <div class="not-found-inner">
+      <p class="overline" style="color: rgba(176,138,60,0.9)">404</p>
+      <h1 class="heading-display not-found-title">Página não encontrada</h1>
+      <p class="not-found-text">
+        A página que você está procurando não existe ou foi removida.
+      </p>
+      <div class="not-found-ctas">
+        <a href="/" class="btn-primary">Voltar ao início</a>
+        <a
+          href={WHATSAPP_URL}
+          class="btn-ghost"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Falar com a Dra. Jamilly pelo WhatsApp"
+        >
+          Falar pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .not-found {
+    background: #050505;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .not-found-inner {
+    max-width: 480px;
+  }
+
+  .not-found-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #ffffff;
+    margin: 16px 0 20px;
+  }
+
+  .not-found-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 40px;
+  }
+
+  .not-found-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+</style>

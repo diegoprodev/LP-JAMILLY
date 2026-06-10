@@ -1,0 +1,257 @@
+---
+const faqs = [
+  {
+    question: 'O resultado vai ficar natural ou vai parecer que fiz alguma coisa?',
+    answer:
+      'O objetivo do planejamento facial é exatamente o oposto: que o resultado seja percebido pela harmonia do rosto, não pela evidência do procedimento. Um rosto bem cuidado parece descansado e leve, não alterado. O trabalho da Dra. Jamilly é construir resultados compatíveis com a identidade de cada paciente.',
+  },
+  {
+    question: 'Dói? O procedimento tem anestesia?',
+    answer:
+      'A maioria dos procedimentos é realizada com anestesia tópica (creme anestésico) aplicada antes da sessão, o que torna o processo muito mais confortável. Alguns procedimentos podem causar leve desconforto, mas dor intensa não é esperada. A Dra. Jamilly prioriza o conforto e bem-estar de cada paciente durante todo o atendimento.',
+  },
+  {
+    question: 'Quanto tempo dura o resultado?',
+    answer:
+      'A duração varia conforme o procedimento: a toxina botulínica tem efeito médio de 4 a 6 meses; os preenchedores de ácido hialurônico de 12 a 18 meses; os bioestimuladores de colágeno podem durar até 2 anos ou mais. O planejamento individualizado da Dra. Jamilly considera a manutenção dos resultados ao longo do tempo como parte do protocolo.',
+  },
+  {
+    question: 'Com que idade posso começar a fazer harmonização facial?',
+    answer:
+      'Não há uma idade mínima única para todos os procedimentos. A indicação depende de avaliação individual, histórico de saúde e objetivo da paciente. Jovens a partir dos 18 anos podem ser candidatas a alguns procedimentos preventivos, como toxina botulínica. O importante é que a decisão parta de uma avaliação profissional criteriosa, não de tendências.',
+  },
+  {
+    question: 'É seguro? Quais são os riscos?',
+    answer:
+      'Quando realizados por médico habilitado, com produtos regularizados pela Anvisa e em ambiente adequado, os procedimentos estéticos têm perfil de segurança elevado. Como qualquer procedimento médico, existem riscos — que são discutidos em detalhes na consulta de avaliação. A Dra. Jamilly atua com rigor técnico e transparência total sobre benefícios e limitações de cada intervenção.',
+  },
+  {
+    question: 'Qual a diferença entre harmonização facial e cirurgia plástica?',
+    answer:
+      'A harmonização facial utiliza substâncias injetáveis (ácido hialurônico, toxina botulínica, bioestimuladores) para equilibrar proporções, suavizar marcas e valorizar os traços do rosto — sem bisturi, sem cicatrizes e com recuperação muito mais rápida. A cirurgia plástica envolve procedimentos invasivos com anestesia geral. Cada abordagem tem suas indicações e os dois podem, em alguns casos, ser complementares.',
+  },
+  {
+    question: 'Como funciona a primeira consulta?',
+    answer:
+      'A consulta de avaliação é o ponto de partida do Método FullFaceJK®. Nela, a Dra. Jamilly realiza um diagnóstico facial completo, considerando estrutura óssea, proporção, tônus muscular e características individuais. Só a partir dessa avaliação é elaborado um plano personalizado. Nenhum procedimento é realizado sem esse planejamento prévio.',
+  },
+  {
+    question: 'Quanto tempo leva a recuperação após os procedimentos?',
+    answer:
+      'A maioria dos procedimentos permite retorno às atividades normais em 24 a 48 horas. Podem ocorrer leve vermelhidão ou equimoses (manchas roxas) no local das aplicações, especialmente com preenchedores — mas são transitórias. A Dra. Jamilly orienta cada paciente sobre os cuidados pós-procedimento de forma detalhada antes e após a sessão.',
+  },
+  {
+    question: 'Preciso parar algum medicamento antes da sessão?',
+    answer:
+      'Alguns medicamentos e suplementos podem aumentar o risco de hematomas após as aplicações — como anticoagulantes, aspirina, vitamina E e ômega-3. A Dra. Jamilly avalia o histórico de medicamentos na consulta e orienta individualmente caso alguma suspensão temporária seja necessária. Nunca interrompa medicamentos por conta própria sem orientação médica.',
+  },
+  {
+    question: 'Posso fazer harmonização se estiver grávida ou amamentando?',
+    answer:
+      'Não. A realização de procedimentos estéticos injetáveis não é recomendada durante a gestação e o período de amamentação. Essa é uma contraindicação padrão, adotada por todas as diretrizes médicas da área. Após esse período, a avaliação pode ser agendada normalmente.',
+  },
+];
+---
+
+<section id="faq" aria-label="Perguntas frequentes sobre harmonização facial">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <p class="overline animate-on-scroll">Dúvidas frequentes</p>
+      <h2 class="heading-display faq-title animate-on-scroll stagger-1">
+        Perguntas que toda paciente faz
+      </h2>
+      <p class="faq-subtitle animate-on-scroll stagger-2">
+        Transparência faz parte do atendimento. Aqui estão as respostas para as dúvidas mais comuns.
+      </p>
+    </div>
+
+    <div class="faq-list" role="list" aria-label="Lista de perguntas e respostas">
+      {faqs.map((faq, index) => (
+        <div
+          class={`faq-item animate-on-scroll stagger-${(index % 3) + 1}`}
+          role="listitem"
+        >
+          <button
+            class="faq-question"
+            aria-expanded="false"
+            type="button"
+            aria-controls={`faq-answer-${index}`}
+            id={`faq-btn-${index}`}
+          >
+            <span>{faq.question}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" class="faq-icon-v"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div
+            class="faq-answer"
+            id={`faq-answer-${index}`}
+            role="region"
+            aria-labelledby={`faq-btn-${index}`}
+            hidden
+          >
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  #faq {
+    background: #ffffff;
+    padding: 100px 0;
+  }
+
+  .faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .faq-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #050505;
+    margin: 12px 0 16px;
+  }
+
+  .faq-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #6b6b6b;
+    margin: 0;
+  }
+
+  /* FAQ accordion */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(5, 5, 5, 0.08);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid rgba(5, 5, 5, 0.08);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #050505;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+  }
+
+  .faq-question:hover {
+    color: #b08a3c;
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid #b08a3c;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .faq-question[aria-expanded="true"] {
+    color: #b08a3c;
+  }
+
+  /* Plus/minus icon */
+  .faq-icon {
+    flex-shrink: 0;
+    color: #b08a3c;
+    transition: transform 0.25s ease;
+  }
+
+  .faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-icon-v {
+    transition: opacity 0.25s ease;
+  }
+
+  .faq-question[aria-expanded="true"] .faq-icon-v {
+    opacity: 0;
+  }
+
+  /* Answer panel */
+  .faq-answer {
+    overflow: hidden;
+  }
+
+  .faq-answer[hidden] {
+    display: none;
+  }
+
+  .faq-answer p {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: #6b6b6b;
+    padding-bottom: 24px;
+    margin: 0;
+  }
+
+  @media (max-width: 599px) {
+    #faq {
+      padding: 64px 0;
+    }
+
+    .faq-header {
+      margin-bottom: 40px;
+    }
+
+    .faq-question {
+      font-size: 0.9375rem;
+      padding: 20px 0;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+
+      // Close all others
+      document.querySelectorAll<HTMLButtonElement>('.faq-question').forEach((other) => {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false');
+          const otherId = other.getAttribute('aria-controls');
+          const otherAnswer = otherId ? document.getElementById(otherId) : null;
+          if (otherAnswer) otherAnswer.hidden = true;
+        }
+      });
+
+      // Toggle current
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>

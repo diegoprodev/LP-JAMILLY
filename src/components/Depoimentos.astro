@@ -1,0 +1,206 @@
+---
+import { TESTIMONIALS, SITE } from '@/config';
+
+const featured = TESTIMONIALS[0];
+const rest = TESTIMONIALS.slice(1);
+---
+
+<section id="depoimentos" aria-label="Depoimentos de pacientes">
+  <div class="depoimentos-inner">
+    <div class="depoimentos-header">
+      <p class="overline animate-on-scroll">Experiências reais</p>
+      <h2 class="heading-display depoimentos-title animate-on-scroll stagger-1">
+        O que pacientes relatam
+      </h2>
+    </div>
+
+    <div class="depoimentos-layout">
+      <!-- Featured testimonial -->
+      <div class="featured-testimonial animate-on-scroll">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <blockquote class="featured-quote">
+          <p>{featured.text}</p>
+          <footer class="testimonial-footer">
+            <span class="stars" aria-label={`${featured.stars} estrelas`}>
+              {"★".repeat(featured.stars)}
+            </span>
+            <cite class="testimonial-name">{featured.name}</cite>
+          </footer>
+        </blockquote>
+      </div>
+
+      <!-- Rest of testimonials -->
+      <div class="testimonials-stack">
+        {rest.map((t, index) => (
+          <div class={`testimonial-card animate-on-scroll stagger-${index + 1}`}>
+            <div class="card-stars">
+              <span class="stars" aria-label={`${t.stars} estrelas`}>
+                {"★".repeat(t.stars)}
+              </span>
+            </div>
+            <blockquote>
+              <p class="card-text">"{t.text}"</p>
+              <footer>
+                <cite class="card-name">{t.name}</cite>
+              </footer>
+            </blockquote>
+          </div>
+        ))}
+
+        <div class="google-cta animate-on-scroll stagger-3">
+          <a
+            href={SITE.googleReviews}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-ghost-dark"
+            aria-label="Ler todas as avaliações no Google (abre em nova aba)"
+          >
+            Ler avaliações no Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #depoimentos {
+    background: #ffffff;
+    padding: 100px 0;
+  }
+
+  .depoimentos-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .depoimentos-header {
+    margin-bottom: 64px;
+  }
+
+  .depoimentos-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #050505;
+    margin: 12px 0 0;
+  }
+
+  .depoimentos-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  /* Featured testimonial */
+  .featured-testimonial {
+    position: relative;
+    padding: 40px 40px 40px 56px;
+    background: #f7f2ea;
+    border-left: 3px solid #b08a3c;
+  }
+
+  .quote-mark {
+    position: absolute;
+    top: 24px;
+    left: 20px;
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: #b08a3c;
+    opacity: 0.4;
+    user-select: none;
+  }
+
+  .featured-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: #050505;
+    margin: 0 0 24px;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-name {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-style: normal;
+    color: #050505;
+    letter-spacing: 0.04em;
+  }
+
+  /* Stack */
+  .testimonials-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    padding: 28px 32px;
+    border: 1px solid rgba(5, 5, 5, 0.08);
+    background: #ffffff;
+  }
+
+  .card-stars {
+    margin-bottom: 12px;
+  }
+
+  .card-text {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: #050505;
+    margin: 0 0 16px;
+  }
+
+  .card-name {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-style: normal;
+    color: #6b6b6b;
+    letter-spacing: 0.04em;
+  }
+
+  .google-cta {
+    padding-top: 8px;
+  }
+
+  @media (min-width: 900px) {
+    .depoimentos-layout {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 64px;
+    }
+
+    .featured-testimonial {
+      flex: 1.2;
+    }
+
+    .testimonials-stack {
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 599px) {
+    #depoimentos {
+      padding: 64px 0;
+    }
+
+    .depoimentos-header {
+      margin-bottom: 40px;
+    }
+
+    .featured-testimonial {
+      padding: 28px 24px 28px 36px;
+    }
+  }
+</style>
