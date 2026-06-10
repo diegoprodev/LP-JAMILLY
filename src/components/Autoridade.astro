@@ -99,15 +99,15 @@ import { WHATSAPP_URL } from '@/config';
   /* Monograma JK decorativo dourado ao lado da foto */
   .autoridade-monogram {
     position: absolute;
-    left: -40px;
+    left: -90px;
     top: 50%;
     transform: translateY(-50%);
-    width: 300px;
-    height: 300px;
+    width: 320px;
+    height: 320px;
     object-fit: contain;
-    opacity: 0.14;
-    /* PNG branco → dourado quente */
-    filter: brightness(0) sepia(1) saturate(4) hue-rotate(6deg) brightness(0.85);
+    opacity: 0.28;
+    /* PNG branco → dourado vivo */
+    filter: brightness(0) invert(1) sepia(1) saturate(6) hue-rotate(2deg) brightness(0.78);
     pointer-events: none;
     z-index: 0;
   }
