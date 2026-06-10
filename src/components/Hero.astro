@@ -336,10 +336,51 @@ import { WHATSAPP_URL } from '@/config';
     }
   }
 
-  /* ── Mobile ───────────────────────────────── */
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    #hero {
+      padding-top: 76px;
+      padding-bottom: 80px;
+    }
+
+    .hero-brand-logo {
+      height: 160px;
+    }
+
+    .hero-logo-wrapper {
+      margin-bottom: 32px;
+    }
+
+    .hero-content {
+      max-width: 100%;
+    }
+
+    .hero-ctas {
+      flex-wrap: nowrap;
+    }
+  }
+
+  /* ── Mobile (< 600px) ────────────────────── */
   @media (max-width: 599px) {
     #hero {
-      padding-bottom: 72px;
+      padding-top: 68px;
+      padding-bottom: 64px;
+    }
+
+    .hero-inner {
+      padding: 0 16px;
+    }
+
+    .hero-brand-logo {
+      height: 140px;
+    }
+
+    .hero-logo-wrapper {
+      margin-bottom: 28px;
+    }
+
+    .hero-content {
+      max-width: 100%;
     }
 
     .hero-ctas {
@@ -349,6 +390,12 @@ import { WHATSAPP_URL } from '@/config';
     .hero-ctas a {
       width: 100%;
       text-align: center;
+    }
+
+    .hero-watermark {
+      width: 300px;
+      height: 300px;
+      right: -60px;
     }
   }
 </style>

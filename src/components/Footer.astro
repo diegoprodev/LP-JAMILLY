@@ -164,4 +164,43 @@ import { SITE, WHATSAPP_URL } from '@/config';
     outline-offset: 3px;
     border-radius: 2px;
   }
+
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    footer {
+      padding: 56px 0 28px;
+    }
+
+    .footer-links {
+      gap: 20px;
+    }
+  }
+
+  /* ── Mobile (< 600px) ────────────────────── */
+  @media (max-width: 599px) {
+    footer {
+      padding: 48px 0 24px;
+    }
+
+    .footer-inner {
+      padding: 0 16px;
+    }
+
+    .footer-logo {
+      height: 44px;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
 </style>

@@ -221,19 +221,40 @@ const resultImages = [
     text-align: center;
   }
 
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) {
+    .carousel-track {
+      max-width: 480px;
+    }
+  }
+
   @media (min-width: 768px) {
     .carousel-track {
       max-width: 520px;
     }
   }
 
+  /* ── Mobile (< 600px) ────────────────────── */
   @media (max-width: 599px) {
     #resultados {
       padding: 64px 0;
     }
 
+    .resultados-inner {
+      padding: 0 16px;
+    }
+
     .resultados-header {
-      margin-bottom: 48px;
+      margin-bottom: 40px;
+    }
+
+    .carousel-track {
+      max-width: 100%;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
     }
   }
 </style>

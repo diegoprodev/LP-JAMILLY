@@ -112,13 +112,45 @@ import { WHATSAPP_URL } from '@/config';
     margin: 0;
   }
 
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    #cta-final {
+      padding: 96px 0;
+    }
+
+    .cta-watermark {
+      width: 320px;
+      height: 320px;
+    }
+  }
+
+  /* ── Mobile (< 600px) ────────────────────── */
   @media (max-width: 599px) {
     #cta-final {
-      padding: 80px 0;
+      padding: 72px 0;
+    }
+
+    .cta-inner {
+      padding: 0 16px;
+    }
+
+    .cta-watermark {
+      width: 260px;
+      height: 260px;
     }
 
     .cta-btn {
       width: 100%;
+      padding: 0 24px;
+    }
+
+    .cta-title {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .cta-text {
+      font-size: 1rem;
+      margin-bottom: 36px;
     }
   }
 </style>

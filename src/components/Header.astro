@@ -272,12 +272,40 @@ import { WHATSAPP_URL } from '@/config';
     outline-offset: 3px;
   }
 
+  /* ── Tablet and up (≥ 768px) ─────────────── */
   @media (min-width: 768px) {
     .nav-links {
       display: flex;
     }
     .nav-cta {
       display: inline-flex;
+    }
+  }
+
+  /* ── Mobile CTA (< 768px): mostra só o botão, sem os links de nav ── */
+  @media (max-width: 767px) {
+    .nav-inner {
+      padding: 0 16px;
+    }
+
+    /* CTA sempre visível no mobile — é o principal call-to-action */
+    .nav-cta {
+      display: inline-flex;
+      font-size: 0.6875rem;
+      padding: 0 14px;
+      min-height: 36px;
+    }
+  }
+
+  /* ── Tablet (600–767px): mostrar links + CTA ──── */
+  @media (min-width: 600px) and (max-width: 767px) {
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
     }
   }
 </style>

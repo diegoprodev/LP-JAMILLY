@@ -176,19 +176,44 @@ import { LOCATIONS, WHATSAPP_URL } from '@/config';
     text-align: center;
   }
 
-  @media (min-width: 640px) {
+  /* ── Tablet and up (≥ 600px) ─────────────── */
+  @media (min-width: 600px) {
     .locations-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    #localizacao {
+      padding: 80px 0;
+    }
+
+    .localizacao-header {
+      margin-bottom: 48px;
+    }
+
+    .location-card {
+      padding: 36px 28px;
+    }
+  }
+
+  /* ── Mobile (< 600px) ────────────────────── */
   @media (max-width: 599px) {
     #localizacao {
       padding: 64px 0;
     }
 
+    .localizacao-inner {
+      padding: 0 16px;
+    }
+
+    .localizacao-header {
+      margin-bottom: 40px;
+    }
+
     .location-card {
-      padding: 32px 24px;
+      padding: 28px 20px;
     }
   }
 </style>

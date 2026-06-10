@@ -192,15 +192,66 @@ import { WHATSAPP_URL } from '@/config';
     color: #050505;
   }
 
+  /* ── Desktop ──────────────────────────────── */
   @media (min-width: 900px) {
     .autoridade-image {
       display: block;
     }
   }
 
+  /* ── Tablet (600–899px) ───────────────────── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    #autoridade {
+      padding: 80px 0;
+    }
+
+    .section-inner {
+      flex-direction: column;
+      gap: 48px;
+      padding: 0 24px;
+    }
+
+    .autoridade-image {
+      display: block;
+      width: 60%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .autoridade-content {
+      width: 100%;
+    }
+
+    .autoridade-title {
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
+    }
+  }
+
+  /* ── Mobile (< 600px) ────────────────────── */
   @media (max-width: 599px) {
     #autoridade {
       padding: 64px 0;
+    }
+
+    .section-inner {
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 16px;
+    }
+
+    .autoridade-image {
+      display: block;
+      width: 70%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .autoridade-content {
+      width: 100%;
+    }
+
+    .autoridade-text {
+      max-width: 100%;
     }
 
     .credentials {
