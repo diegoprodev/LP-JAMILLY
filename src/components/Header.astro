@@ -65,11 +65,19 @@ import { WHATSAPP_URL } from '@/config';
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
+    min-height: 76px;
     height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    transition: height 0.4s ease, min-height 0.4s ease;
+  }
+
+  /* Navbar cresce para acomodar a logo de 120px */
+  #site-header.logo-visible .nav-inner {
+    height: 140px;
+    min-height: 140px;
   }
 
   /* ── Logo ─────────────────────────────────── */
@@ -91,7 +99,7 @@ import { WHATSAPP_URL } from '@/config';
   }
 
   .logo-img {
-    height: 52px;
+    height: 120px;
     width: auto;
     display: block;
   }
