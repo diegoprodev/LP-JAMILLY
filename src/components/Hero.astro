@@ -2,7 +2,7 @@
 import { WHATSAPP_URL } from '@/config';
 ---
 
-<section id="hero" aria-label="Apresentação da Dra. Jamilly Karla">
+<section id="hero" data-theme="dark" aria-label="Apresentação da Dra. Jamilly Karla">
 
   <!-- Photo: absolute-positioned right side, blends via gradient -->
   <img
@@ -65,6 +65,17 @@ import { WHATSAPP_URL } from '@/config';
     </div>
   </div>
 
+  <!-- Decorative JK monogram watermark -->
+  <img
+    src="/images/logo-design.png"
+    class="hero-watermark"
+    aria-hidden="true"
+    alt=""
+    width="480"
+    height="480"
+    loading="eager"
+  />
+
   <!-- Subtle scroll indicator -->
   <div class="hero-scroll-indicator" aria-hidden="true">
     <div class="scroll-line"></div>
@@ -97,6 +108,21 @@ import { WHATSAPP_URL } from '@/config';
     object-position: center 12%;
     pointer-events: none;
     user-select: none;
+  }
+
+  /* ── JK watermark ────────────────────────── */
+  .hero-watermark {
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 480px;
+    height: 480px;
+    object-fit: contain;
+    opacity: 0.05;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
   }
 
   /* ── Gradient overlays ────────────────────── */

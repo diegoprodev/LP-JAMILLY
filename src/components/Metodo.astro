@@ -98,11 +98,16 @@ import { METHOD_STEPS, WHATSAPP_URL } from '@/config';
     font-size: 5rem;
     font-weight: 300;
     line-height: 1;
-    color: #f7f2ea;
+    color: rgba(176, 138, 60, 0.08);
     min-width: 80px;
     text-align: right;
     flex-shrink: 0;
     user-select: none;
+    transition: color 0.9s ease;
+  }
+
+  .step.number-colored .step-number {
+    color: #b08a3c;
   }
 
   .step-body {
@@ -163,3 +168,19 @@ import { METHOD_STEPS, WHATSAPP_URL } from '@/config';
     }
   }
 </style>
+
+<script>
+  const steps = document.querySelectorAll('#metodo .step');
+  if (steps.length > 0) {
+    const numberObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('number-colored');
+          numberObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    steps.forEach(step => numberObserver.observe(step));
+  }
+</script>

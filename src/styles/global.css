@@ -104,6 +104,11 @@ body {
 }
 
 /* CTA buttons */
+@keyframes shimmer {
+  0%   { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%)  skewX(-20deg); }
+}
+
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -123,6 +128,17 @@ body {
   white-space: nowrap;
   cursor: pointer;
   border: none;
+  overflow: hidden;
+  position: relative;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 220, 120, 0.24) 50%, transparent 100%);
+  transform: translateX(-120%) skewX(-20deg);
+  animation: shimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
 }
 .btn-primary:hover {
   background: #8b6b2a;

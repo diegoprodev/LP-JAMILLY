@@ -8,8 +8,7 @@ import { WHATSAPP_URL } from '@/config';
       <img
         src="/images/logo-jamilly.png"
         alt="Jamilly Karla Centro de Estética e Saúde"
-        height="44"
-        width="auto"
+        height="56"
         loading="eager"
         fetchpriority="high"
         class="logo-img"
@@ -82,16 +81,45 @@ import { WHATSAPP_URL } from '@/config';
   }
 
   .logo-img {
-    height: 44px;
+    height: 56px;
     width: auto;
     display: block;
-    /* On dark hero: invert if logo is dark */
     filter: brightness(0) invert(1);
     transition: filter 0.35s ease;
   }
 
   #site-header.scrolled .logo-img {
     filter: none;
+  }
+
+  /* ── On-dark override (scrolled over dark section) ─ */
+  #site-header.scrolled.on-dark {
+    background: rgba(11, 9, 6, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: none;
+  }
+
+  #site-header.scrolled.on-dark .logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+  #site-header.scrolled.on-dark .logo-fallback {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  #site-header.scrolled.on-dark .nav-links a {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  #site-header.scrolled.on-dark .nav-links a:hover {
+    color: #ffffff;
+  }
+
+  #site-header.scrolled.on-dark .nav-cta {
+    background: #b08a3c;
+    color: #ffffff;
+    border-color: #b08a3c;
   }
 
   .logo-fallback {
@@ -206,15 +234,43 @@ import { WHATSAPP_URL } from '@/config';
 
 <script>
   const header = document.getElementById('site-header');
+  let isScrolled = false;
+  const visibleDarkSections = new Set<Element>();
 
-  function handleScroll() {
-    if (window.scrollY > 40) {
+  function updateHeader() {
+    if (isScrolled) {
       header?.classList.add('scrolled');
+      if (visibleDarkSections.size > 0) {
+        header?.classList.add('on-dark');
+      } else {
+        header?.classList.remove('on-dark');
+      }
     } else {
-      header?.classList.remove('scrolled');
+      header?.classList.remove('scrolled', 'on-dark');
     }
   }
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  window.addEventListener('scroll', () => {
+    isScrolled = window.scrollY > 40;
+    updateHeader();
+  }, { passive: true });
+
+  const darkSections = document.querySelectorAll('[data-theme="dark"]');
+  if (darkSections.length > 0) {
+    const darkObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          visibleDarkSections.add(entry.target);
+        } else {
+          visibleDarkSections.delete(entry.target);
+        }
+        updateHeader();
+      });
+    }, { threshold: 0.1 });
+
+    darkSections.forEach(s => darkObserver.observe(s));
+  }
+
+  isScrolled = window.scrollY > 40;
+  updateHeader();
 </script>

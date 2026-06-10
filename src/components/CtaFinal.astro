@@ -2,7 +2,18 @@
 import { WHATSAPP_URL } from '@/config';
 ---
 
-<section id="cta-final" aria-label="Agende sua avaliação com a Dra. Jamilly Karla">
+<section id="cta-final" data-theme="dark" aria-label="Agende sua avaliação com a Dra. Jamilly Karla">
+  <!-- Decorative JK watermark -->
+  <img
+    src="/images/logo-design.png"
+    class="cta-watermark"
+    aria-hidden="true"
+    alt=""
+    width="400"
+    height="400"
+    loading="lazy"
+  />
+
   <div class="cta-inner">
     <p class="overline animate-on-scroll" style="color: rgba(176,138,60,0.9)">Dê o primeiro passo</p>
 
@@ -37,6 +48,22 @@ import { WHATSAPP_URL } from '@/config';
     padding: 120px 0;
     border-top: 3px solid #b08a3c;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    opacity: 0.06;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+    user-select: none;
   }
 
   .cta-inner {

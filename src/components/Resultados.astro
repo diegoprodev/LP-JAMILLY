@@ -27,23 +27,43 @@ const resultImages = [
       </p>
     </div>
 
-    <div class="resultados-grid" aria-label="Galeria de resultados">
-      {resultImages.map((img, index) => (
-        <div class={`resultado-item animate-on-scroll stagger-${index + 1}`}>
-          <img
-            src={img.src}
-            alt={`${img.label} de harmonização facial pela Dra. Jamilly Karla em Santa Rita e João Pessoa`}
-            class="resultado-photo"
-            loading="lazy"
-            width="400"
-            height="533"
-            onerror="this.parentElement.classList.add('placeholder-active')"
-          />
-          <div class="resultado-placeholder" aria-hidden="true">
-            <span class="placeholder-text">{img.label}</span>
+    <!-- Carousel -->
+    <div class="carousel animate-on-scroll stagger-2" role="region" aria-label="Galeria de resultados">
+      <div class="carousel-track">
+        {resultImages.map((img, index) => (
+          <div
+            class={`slide${index === 0 ? ' active' : ''}`}
+            aria-hidden={index !== 0 ? 'true' : 'false'}
+            data-index={index}
+          >
+            <img
+              src={img.src}
+              alt={`${img.label} de harmonização facial pela Dra. Jamilly Karla em Santa Rita e João Pessoa`}
+              class="slide-img"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              width="440"
+              height="587"
+              onerror="this.parentElement.classList.add('placeholder-active')"
+            />
+            <div class="slide-placeholder" aria-hidden="true">
+              <span class="placeholder-text">{img.label}</span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <!-- Dot indicators -->
+      <div class="carousel-dots" role="tablist" aria-label="Navegar entre resultados">
+        {resultImages.map((_, index) => (
+          <button
+            class={`dot${index === 0 ? ' active' : ''}`}
+            role="tab"
+            aria-label={`Ver resultado ${index + 1}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            data-dot={index}
+          />
+        ))}
+      </div>
     </div>
 
     <div class="resultados-cta animate-on-scroll">
@@ -105,34 +125,42 @@ const resultImages = [
     margin: 0;
   }
 
-  /* Results grid */
-  .resultados-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  /* ── Carousel ─────────────────────────────── */
+  .carousel {
     margin-bottom: 56px;
   }
 
-  .resultado-item {
+  .carousel-track {
     position: relative;
+    width: 100%;
+    max-width: 440px;
     aspect-ratio: 3 / 4;
+    margin: 0 auto;
     overflow: hidden;
     background: #e8e0d0;
   }
 
-  .resultado-photo {
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.85s ease;
+    pointer-events: none;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slide-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s ease;
   }
 
-  .resultado-item:hover .resultado-photo {
-    transform: scale(1.03);
-  }
-
-  .resultado-placeholder {
+  .slide-placeholder {
     position: absolute;
     inset: 0;
     display: flex;
@@ -143,11 +171,11 @@ const resultImages = [
     pointer-events: none;
   }
 
-  /* Show placeholder when image fails */
-  .resultado-item.placeholder-active .resultado-placeholder {
+  .slide.placeholder-active .slide-placeholder {
     opacity: 1;
   }
-  .resultado-item.placeholder-active .resultado-photo {
+
+  .slide.placeholder-active .slide-img {
     opacity: 0;
   }
 
@@ -159,13 +187,43 @@ const resultImages = [
     color: #a09080;
   }
 
+  /* ── Dots ─────────────────────────────────── */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(176, 138, 60, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .dot.active {
+    background: #b08a3c;
+    transform: scale(1.4);
+  }
+
+  .dot:focus-visible {
+    outline: 2px solid #b08a3c;
+    outline-offset: 3px;
+  }
+
+  /* ── CTA ──────────────────────────────────── */
   .resultados-cta {
     text-align: center;
   }
 
   @media (min-width: 768px) {
-    .resultados-grid {
-      grid-template-columns: repeat(4, 1fr);
+    .carousel-track {
+      max-width: 520px;
     }
   }
 
@@ -177,9 +235,48 @@ const resultImages = [
     .resultados-header {
       margin-bottom: 48px;
     }
-
-    .resultados-grid {
-      gap: 8px;
-    }
   }
 </style>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>('#resultados .slide');
+  const dots = document.querySelectorAll<HTMLButtonElement>('#resultados .dot');
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    slides[current].classList.remove('active');
+    slides[current].setAttribute('aria-hidden', 'true');
+    dots[current].classList.remove('active');
+    dots[current].setAttribute('aria-selected', 'false');
+
+    current = index;
+
+    slides[current].classList.add('active');
+    slides[current].setAttribute('aria-hidden', 'false');
+    dots[current].classList.add('active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  function startTimer() {
+    timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      stopTimer();
+      goTo(i);
+      startTimer();
+    });
+  });
+
+  const track = document.querySelector('#resultados .carousel-track');
+  track?.addEventListener('mouseenter', stopTimer);
+  track?.addEventListener('mouseleave', startTimer);
+
+  startTimer();
+</script>
