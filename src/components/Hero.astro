@@ -25,16 +25,18 @@ import { WHATSAPP_URL } from '@/config';
   <div class="hero-inner">
 
     <!-- Logo centralizada — some ao scroll (navbar logo aparece no lugar) -->
-    <img
-      id="hero-brand-logo"
-      src="/images/logo-jamilly.png"
-      alt="Jamilly Karla Centro de Estética e Saúde"
-      class="hero-brand-logo"
-      loading="eager"
-      fetchpriority="high"
-      width="300"
-      height="160"
-    />
+    <div class="hero-logo-wrapper">
+      <img
+        id="hero-brand-logo"
+        src="/images/logo-jamilly.png"
+        alt="Jamilly Karla Centro de Estética e Saúde"
+        class="hero-brand-logo"
+        loading="eager"
+        fetchpriority="high"
+        width="410"
+        height="220"
+      />
+    </div>
 
     <div class="hero-content">
 
@@ -187,14 +189,45 @@ import { WHATSAPP_URL } from '@/config';
     max-width: 560px;
   }
 
+  /* Wrapper para o shimmer da logo */
+  .hero-logo-wrapper {
+    display: block;
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 40px;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  /* Shimmer dourado varrendo a logo */
+  .hero-logo-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -10% -20%;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 248, 190, 0.6) 50%,
+      transparent 70%
+    );
+    transform: translateX(-200%) skewX(-15deg);
+    animation: logo-shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  @keyframes logo-shimmer {
+    0%, 100% { transform: translateX(-200%) skewX(-15deg); }
+    55% { transform: translateX(300%) skewX(-15deg); }
+  }
+
   /* Logo centralizada no topo do hero */
   .hero-brand-logo {
     display: block;
-    height: 160px;
+    height: 220px;
     width: auto;
-    margin: 0 auto 40px;
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }
 
   .hero-overline {
