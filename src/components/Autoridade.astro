@@ -47,26 +47,26 @@ import { WHATSAPP_URL } from '@/config';
         de você mesma que sempre esteve lá.
       </p>
 
-      <div class="credentials animate-on-scroll stagger-3" role="list" aria-label="Credenciais profissionais">
-        <div class="credential-item card-gold-accent" role="listitem">
-          <span class="credential-label">Especialidade</span>
+      <div class="credentials-strip animate-on-scroll stagger-3" role="list" aria-label="Credenciais profissionais">
+        <div class="credential-stat" role="listitem">
+          <span class="overline">Especialidade</span>
           <span class="credential-value">Harmonização Facial</span>
         </div>
-        <div class="credential-item card-gold-accent" role="listitem">
-          <span class="credential-label">Atuação</span>
-          <span class="credential-value">João Pessoa e Santa Rita, PB</span>
+        <div class="credential-stat" role="listitem">
+          <span class="overline">Atuação</span>
+          <span class="credential-value">João Pessoa e Santa Rita</span>
         </div>
-        <div class="credential-item card-gold-accent" role="listitem">
-          <span class="credential-label">Abordagem</span>
-          <span class="credential-value">Planejamento Facial Completo</span>
+        <div class="credential-stat" role="listitem">
+          <span class="overline">Abordagem</span>
+          <span class="credential-value">Planejamento Completo</span>
         </div>
-        <div class="credential-item card-gold-accent" role="listitem">
-          <span class="credential-label">Método</span>
+        <div class="credential-stat" role="listitem">
+          <span class="overline">Método</span>
           <span class="credential-value">FullFaceJK®</span>
         </div>
       </div>
 
-      <a href="#metodo" class="btn-ghost-dark animate-on-scroll stagger-4" aria-label="Entender o Método FullFaceJK">
+      <a href="#metodo" class="btn-primary animate-on-scroll stagger-4" aria-label="Entender o Método FullFaceJK">
         Conhecer o método
       </a>
     </div>
@@ -161,35 +161,44 @@ import { WHATSAPP_URL } from '@/config';
     margin: 0 0 40px;
   }
 
-  .credentials {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+  /* ── Editorial stat strip ────────────────── */
+  .credentials-strip {
+    display: flex;
+    align-items: flex-start;
     margin-bottom: 40px;
   }
 
-  .credential-item {
-    background: #ffffff;
-    padding: 16px 20px;
+  .credential-stat {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
+    padding: 0 24px;
+    /* Separador dourado entre colunas */
+    border-left: 1px solid rgba(176, 138, 60, 0.35);
   }
 
-  .credential-label {
-    font-family: var(--font-body);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #b08a3c;
+  .credential-stat:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .credential-stat:last-child {
+    padding-right: 0;
   }
 
   .credential-value {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.2;
     color: #050505;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+
+  .credential-stat:hover .credential-value {
+    color: #b08a3c;
   }
 
   /* ── Desktop ──────────────────────────────── */
@@ -254,8 +263,20 @@ import { WHATSAPP_URL } from '@/config';
       max-width: 100%;
     }
 
-    .credentials {
-      grid-template-columns: 1fr;
+    .credentials-strip {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .credential-stat {
+      padding: 16px 0;
+      border-left: none;
+      border-top: 1px solid rgba(176, 138, 60, 0.35);
+    }
+
+    .credential-stat:first-child {
+      border-top: none;
+      padding-top: 0;
     }
   }
 </style>
