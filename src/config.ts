@@ -31,9 +31,16 @@ export const LOCATIONS = [
 ] as const;
 
 export const SEO = {
+  // Título da aba e indexação Google — rico em keywords
   title: 'Dra. Jamilly Karla | Harmonização Facial em João Pessoa e Santa Rita',
+  // Meta description para SERPs
   description:
     'Método FullFaceJK®: planejamento facial personalizado com a Dra. Jamilly Karla. Harmonização facial, rejuvenescimento e estética avançada em João Pessoa e Santa Rita, PB.',
+  // og:title — copy de impacto para WhatsApp, Instagram, LinkedIn, iMessage
+  ogTitle: 'Dra. Jamilly Karla | Um rosto que parece descansado, não alterado.',
+  // og:description — complementa a imagem no preview social
+  ogDescription:
+    'Planejamento facial personalizado com o Método FullFaceJK®. Resultado discreto que valoriza seus traços — João Pessoa e Santa Rita, PB.',
   keywords:
     'harmonização facial João Pessoa, harmonização facial Santa Rita, preenchimento labial João Pessoa, bioestimulador de colágeno João Pessoa, rinomodelação João Pessoa, Dra Jamilly Karla, FullFaceJK, toxina botulínica João Pessoa, skinbooster João Pessoa, estética avançada PB',
   ogImage: '/images/og-image.jpg',

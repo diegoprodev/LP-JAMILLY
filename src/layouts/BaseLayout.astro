@@ -68,8 +68,8 @@ const schemaOrg = {
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={SEO.ogTitle} />
+    <meta property="og:description" content={SEO.ogDescription} />
     <meta property="og:image" content={`${canonicalUrl}/og-image.jpg`} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
@@ -80,8 +80,8 @@ const schemaOrg = {
 
     <!-- Twitter/X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={SEO.ogTitle} />
+    <meta name="twitter:description" content={SEO.ogDescription} />
     <meta name="twitter:image" content={`${canonicalUrl}/og-image.jpg`} />
 
     <!-- Favicons -->
