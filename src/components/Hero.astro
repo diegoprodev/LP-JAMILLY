@@ -113,13 +113,15 @@ import { WHATSAPP_URL } from '@/config';
   /* ── JK watermark ────────────────────────── */
   .hero-watermark {
     position: absolute;
-    bottom: -40px;
-    right: -40px;
-    width: 480px;
-    height: 480px;
+    top: 50%;
+    right: -30px;
+    transform: translateY(-50%);
+    width: 540px;
+    height: 540px;
     object-fit: contain;
-    opacity: 0.05;
-    filter: brightness(0) invert(1);
+    opacity: 0.09;
+    /* brightness(0)+invert(1) = white silhouette; sepia+saturate = warm gold tint */
+    filter: brightness(0) invert(1) sepia(0.9) saturate(3) hue-rotate(6deg) brightness(1.05);
     pointer-events: none;
     user-select: none;
     z-index: 1;

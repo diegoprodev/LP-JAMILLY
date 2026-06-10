@@ -54,6 +54,17 @@ const faqs = [
 ---
 
 <section id="faq" aria-label="Perguntas frequentes sobre harmonização facial">
+  <!-- JK watermark lateral esquerda -->
+  <img
+    src="/images/logo-design.png"
+    class="faq-watermark"
+    aria-hidden="true"
+    alt=""
+    width="360"
+    height="360"
+    loading="lazy"
+  />
+
   <div class="faq-inner">
     <div class="faq-header">
       <p class="overline animate-on-scroll">Dúvidas frequentes</p>
@@ -105,12 +116,31 @@ const faqs = [
   #faq {
     background: #ffffff;
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gold watermark — mix-blend-mode:multiply faz o fundo branco do PNG desaparecer */
+  .faq-watermark {
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 360px;
+    height: 360px;
+    object-fit: contain;
+    opacity: 0.13;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    user-select: none;
   }
 
   .faq-inner {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
   .faq-header {
