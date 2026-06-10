@@ -4,7 +4,7 @@ import Header from '@/components/Header.astro';
 import Hero from '@/components/Hero.astro';
 import Autoridade from '@/components/Autoridade.astro';
 import Metodo from '@/components/Metodo.astro';
-import Procedimentos from '@/components/Procedimentos.astro';
+import ProceduresCarousel from '@/components/ProceduresCarousel.jsx';
 import Resultados from '@/components/Resultados.astro';
 import Depoimentos from '@/components/Depoimentos.astro';
 import FAQ from '@/components/FAQ.astro';
@@ -22,7 +22,7 @@ import ScrollAnimations from '@/components/ScrollAnimations.astro';
     <Hero />
     <Autoridade />
     <Metodo />
-    <Procedimentos />
+    <ProceduresCarousel client:visible />
     <Resultados />
     <Depoimentos />
     <FAQ />
