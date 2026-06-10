@@ -383,12 +383,12 @@ import BookingButton from '@/components/BookingButton.astro';
       padding-bottom: 64px;
     }
 
-    /* Foto lado direito — 20% mostra Jamilly em 56-87% da tela */
+    /* object-position 38% desloca Jamilly para ~42-73% da tela (mais centrada/esquerda) */
     .hero-photo-bg {
       display: block;
-      width: 72%;
+      width: 75%;
       right: -16px;
-      object-position: 20% 15%;
+      object-position: 38% 15%;
       opacity: 0.90;
     }
 
@@ -442,6 +442,8 @@ import BookingButton from '@/components/BookingButton.astro';
       width: 300px;
       height: 300px;
       right: -60px;
+      top: 28%;
+      transform: translateY(-28%);
     }
   }
 </style>
