@@ -6,8 +6,8 @@ import { WHATSAPP_URL } from '@/config';
   <div class="section-inner">
     <div class="autoridade-image animate-on-scroll">
       <img
-        src="/images/JAMILLY1.webp"
-        alt="Dra. Jamilly Karla em seu consultório, médica especialista em harmonização facial em Santa Rita e João Pessoa"
+        src="/images/JAMILY-SEMFUNDO.webp"
+        alt="Dra. Jamilly Karla, médica especialista em harmonização facial em Santa Rita e João Pessoa"
         class="autoridade-photo"
         loading="lazy"
         width="580"
@@ -91,14 +91,14 @@ import { WHATSAPP_URL } from '@/config';
     width: 100%;
     height: auto;
     object-fit: cover;
-    /* Degradê editorial: foto funde com a seção bege em todas as bordas */
+    /* Imagem sem fundo: fade sutil só nas laterais e rodapé */
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, black 5%, black 62%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 4%, black 94%, transparent 100%);
+      linear-gradient(to right, transparent 0%, black 8%, black 80%, transparent 100%),
+      linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to right, transparent 0%, black 5%, black 62%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 4%, black 94%, transparent 100%);
+      linear-gradient(to right, transparent 0%, black 8%, black 80%, transparent 100%),
+      linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
     mask-composite: intersect;
   }
 

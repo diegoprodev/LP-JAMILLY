@@ -65,7 +65,7 @@ import { WHATSAPP_URL } from '@/config';
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
-    height: 136px;
+    height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,10 +78,20 @@ import { WHATSAPP_URL } from '@/config';
     align-items: center;
     text-decoration: none;
     flex-shrink: 0;
+    /* Invisível até o hero logo sair do viewport */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+
+  /* JS adiciona .logo-visible quando hero logo sai de cena */
+  #site-header.logo-visible .logo-link {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .logo-img {
-    height: 120px;
+    height: 52px;
     width: auto;
     display: block;
   }
@@ -305,4 +315,19 @@ import { WHATSAPP_URL } from '@/config';
 
   isScrolled = window.scrollY > 40;
   updateHeader();
+
+  // Scroll-reveal logo: aparece quando o hero logo sai do viewport
+  const heroLogo = document.getElementById('hero-brand-logo');
+  if (heroLogo) {
+    const logoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          header?.classList.remove('logo-visible');
+        } else {
+          header?.classList.add('logo-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    logoObserver.observe(heroLogo);
+  }
 </script>

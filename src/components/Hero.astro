@@ -24,6 +24,19 @@ import { WHATSAPP_URL } from '@/config';
   <!-- Content -->
   <div class="hero-inner">
     <div class="hero-content">
+
+      <!-- Logo grande — visível no hero, some ao scroll (navbar logo aparece no lugar) -->
+      <img
+        id="hero-brand-logo"
+        src="/images/logo-jamilly.png"
+        alt="Jamilly Karla Centro de Estética e Saúde"
+        class="hero-brand-logo"
+        loading="eager"
+        fetchpriority="high"
+        width="260"
+        height="140"
+      />
+
       <p class="overline hero-overline animate-on-scroll">Método FullFaceJK®</p>
 
       <h1 class="hero-title animate-on-scroll stagger-1">
@@ -91,7 +104,7 @@ import { WHATSAPP_URL } from '@/config';
     overflow: hidden;
     display: flex;
     align-items: center;
-    padding-top: 152px;
+    padding-top: 100px;
     padding-bottom: 80px;
   }
 
@@ -171,6 +184,17 @@ import { WHATSAPP_URL } from '@/config';
 
   .hero-content {
     max-width: 560px;
+  }
+
+  /* Logo grande no hero */
+  .hero-brand-logo {
+    display: block;
+    height: 140px;
+    width: auto;
+    margin-bottom: 36px;
+    /* Garantir que aparece sobre o gradiente */
+    position: relative;
+    z-index: 2;
   }
 
   .hero-overline {
