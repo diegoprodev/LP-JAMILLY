@@ -5,9 +5,19 @@ import { WHATSAPP_URL } from '@/config';
 <section id="autoridade" aria-label="Sobre a Dra. Jamilly Karla">
   <div class="section-inner">
     <div class="autoridade-image animate-on-scroll">
+      <!-- Monograma JK decorativo — dourado semitransparente ao lado da foto -->
+      <img
+        src="/images/logo-design.png"
+        class="autoridade-monogram"
+        aria-hidden="true"
+        alt=""
+        width="320"
+        height="320"
+        loading="lazy"
+      />
       <img
         src="/images/JAMILY-SEMFUNDO.webp"
-        alt="Dra. Jamilly Karla, médica especialista em harmonização facial em Santa Rita e João Pessoa"
+        alt="Jamilly Karla, especialista em harmonização facial em Santa Rita e João Pessoa"
         class="autoridade-photo"
         loading="lazy"
         width="580"
@@ -16,7 +26,7 @@ import { WHATSAPP_URL } from '@/config';
     </div>
 
     <div class="autoridade-content">
-      <p class="overline animate-on-scroll">Médica, mãe e apaixonada pelo que faz</p>
+      <p class="overline animate-on-scroll">Esteticista, mãe e apaixonada pelo que faz</p>
 
       <h2 class="heading-display autoridade-title animate-on-scroll stagger-1">
         Um rosto bem cuidado não parece alterado.<br />
@@ -24,10 +34,10 @@ import { WHATSAPP_URL } from '@/config';
       </h2>
 
       <p class="autoridade-text animate-on-scroll stagger-2">
-        Jamilly Karla é médica — mas antes de tudo é mulher. É mãe, aprecia um bom vinho,
+        Jamilly Karla é esteticista — mas antes de tudo é mulher. É mãe, aprecia um bom vinho,
         se perde em cafeterias com alma, frequenta restaurantes que contam histórias e cuida
         do próprio corpo e da mente com a mesma dedicação que coloca em cada paciente.
-        Essa vivência orienta o seu olhar clínico: ela entende, de dentro, o que é
+        Essa vivência orienta o seu olhar técnico: ela entende, de dentro, o que é
         querer se sentir bem na própria pele.
       </p>
 
@@ -86,11 +96,29 @@ import { WHATSAPP_URL } from '@/config';
     position: relative;
   }
 
+  /* Monograma JK decorativo dourado ao lado da foto */
+  .autoridade-monogram {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    opacity: 0.14;
+    /* PNG branco → dourado quente */
+    filter: brightness(0) sepia(1) saturate(4) hue-rotate(6deg) brightness(0.85);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .autoridade-photo {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+    position: relative;
+    z-index: 1;
     /* Imagem sem fundo: fade sutil só nas laterais e rodapé */
     -webkit-mask-image:
       linear-gradient(to right, transparent 0%, black 8%, black 80%, transparent 100%),

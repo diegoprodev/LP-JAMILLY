@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Jamilly Karla Centro de Estética e Saúde',
   doctorName: 'Dra. Jamilly Karla',
-  specialty: 'Médica Especialista em Harmonização Facial',
+  specialty: 'Especialista em Harmonização Facial',
   method: 'Método FullFaceJK®',
   whatsapp: '5583993548045',
   whatsappMessage: 'Olá, Dra. Jamilly. Vim pelo site e gostaria de agendar uma avaliação.',
@@ -104,7 +104,7 @@ export const METHOD_STEPS = [
 export const TESTIMONIALS = [
   {
     name: 'Ana Carolina M.',
-    text: 'Resultado incrível. A Dra. Jamilly tem um olhar artístico único. Me sinto mais bonita e natural do que nunca.',
+    text: 'Resultado incrível. A Jamilly tem um olhar artístico único. Me sinto mais bonita e natural do que nunca.',
     stars: 5,
   },
   {
