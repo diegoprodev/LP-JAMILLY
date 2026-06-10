@@ -83,6 +83,7 @@ import { WHATSAPP_URL } from '@/config';
     width: 44%;
     max-width: 520px;
     display: none;
+    position: relative;
   }
 
   .autoridade-photo {
@@ -90,6 +91,15 @@ import { WHATSAPP_URL } from '@/config';
     width: 100%;
     height: auto;
     object-fit: cover;
+    /* Degradê editorial: foto funde com a seção bege em todas as bordas */
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 5%, black 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 4%, black 94%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 5%, black 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 4%, black 94%, transparent 100%);
+    mask-composite: intersect;
   }
 
   .autoridade-content {
