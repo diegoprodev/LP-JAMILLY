@@ -194,34 +194,41 @@ import { WHATSAPP_URL } from '@/config';
     display: block;
     position: relative;
     width: fit-content;
-    margin: 0 auto 40px;
+    /* Alinhado à esquerda, junto ao conteúdo */
+    margin: 0 0 40px;
     z-index: 2;
-    overflow: hidden;
   }
 
-  /* Shimmer dourado varrendo a logo */
+  /* Shimmer mascarado pela própria PNG da logo — só aparece nos pixels da arte */
   .hero-logo-wrapper::after {
     content: '';
     position: absolute;
-    inset: -10% -20%;
+    inset: 0;
     background: linear-gradient(
       105deg,
-      transparent 30%,
-      rgba(255, 248, 190, 0.6) 50%,
-      transparent 70%
+      transparent 25%,
+      rgba(255, 248, 200, 0.85) 50%,
+      transparent 75%
     );
-    transform: translateX(-200%) skewX(-15deg);
+    background-size: 300% 100%;
+    background-position: -100% 0;
+    /* Máscara = shape exato da logo PNG */
+    -webkit-mask-image: url('/images/logo-jamilly.png');
+    mask-image: url('/images/logo-jamilly.png');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
     animation: logo-shimmer 4s ease-in-out infinite;
     pointer-events: none;
-    mix-blend-mode: screen;
   }
 
   @keyframes logo-shimmer {
-    0%, 100% { transform: translateX(-200%) skewX(-15deg); }
-    55% { transform: translateX(300%) skewX(-15deg); }
+    0%, 30% { background-position: -100% 0; }
+    70%, 100% { background-position: 200% 0; }
   }
 
-  /* Logo centralizada no topo do hero */
+  /* Logo — esquerda, alinhada ao hero-content */
   .hero-brand-logo {
     display: block;
     height: 220px;
