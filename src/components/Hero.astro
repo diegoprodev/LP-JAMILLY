@@ -338,22 +338,24 @@ import BookingButton from '@/components/BookingButton.astro';
       padding-bottom: 80px;
     }
 
-    /* Foto visível no tablet — lado direito com fade */
+    /* Foto lado direito — object-position mostra Jamilly (28-42% da imagem) */
     .hero-photo-bg {
       display: block;
-      width: 70%;
-      object-position: center 12%;
+      width: 65%;
+      object-position: 20% 12%;
     }
 
     .hero-gradient-left {
       display: block;
-      width: 70%;
+      width: 100%;
       background: linear-gradient(
         to right,
         #0b0906 0%,
-        rgba(11,9,6,0.95) 22%,
-        rgba(11,9,6,0.65) 45%,
-        rgba(11,9,6,0.1) 100%
+        rgba(11,9,6,0.97) 24%,
+        rgba(11,9,6,0.80) 44%,
+        rgba(11,9,6,0.38) 60%,
+        rgba(11,9,6,0.08) 72%,
+        transparent 80%
       );
     }
 
@@ -381,23 +383,28 @@ import BookingButton from '@/components/BookingButton.astro';
       padding-bottom: 64px;
     }
 
-    /* Foto visível no mobile — ocupa lado direito com fade forte */
+    /* Foto lado direito — 20% mostra Jamilly em 56-87% da tela */
     .hero-photo-bg {
       display: block;
-      width: 80%;
-      object-position: right 12%;
-      opacity: 0.75;
+      width: 72%;
+      right: -16px;
+      object-position: 20% 15%;
+      opacity: 0.90;
     }
 
+    /* Gradiente full-width: escuro esquerda → transparente onde Jamilly aparece */
     .hero-gradient-left {
       display: block;
-      width: 80%;
+      width: 100%;
       background: linear-gradient(
         to right,
         #0b0906 0%,
-        rgba(11,9,6,0.98) 28%,
-        rgba(11,9,6,0.72) 52%,
-        rgba(11,9,6,0.1) 100%
+        rgba(11,9,6,0.97) 26%,
+        rgba(11,9,6,0.82) 48%,
+        rgba(11,9,6,0.42) 62%,
+        rgba(11,9,6,0.12) 74%,
+        rgba(11,9,6,0.02) 83%,
+        transparent 90%
       );
     }
 
@@ -415,6 +422,11 @@ import BookingButton from '@/components/BookingButton.astro';
 
     .hero-content {
       max-width: 100%;
+    }
+
+    /* Sombra sutil no título para legibilidade sobre a foto */
+    .hero-title {
+      text-shadow: 0 2px 16px rgba(0,0,0,0.45);
     }
 
     .hero-ctas {
