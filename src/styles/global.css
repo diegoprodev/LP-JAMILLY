@@ -113,8 +113,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 32px;
+  min-height: 54px;
+  padding: 0 40px;
   background: #b08a3c;
   color: #ffffff;
   font-family: var(--font-body);
@@ -142,11 +142,13 @@ body {
     transparent 85%
   );
   transform: translateX(-130%) skewX(-20deg);
-  animation: shimmer 2.4s ease-in-out infinite;
   pointer-events: none;
 }
 .btn-primary:hover {
   background: #8b6b2a;
+}
+.btn-primary:hover::after {
+  animation: shimmer 0.55s ease-out forwards;
 }
 .btn-primary:focus-visible {
   outline: 2px solid #b08a3c;
@@ -160,8 +162,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 32px;
+  min-height: 54px;
+  padding: 0 40px;
   background: transparent;
   color: #ffffff;
   font-family: var(--font-body);
