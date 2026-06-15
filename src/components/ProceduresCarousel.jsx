@@ -53,7 +53,7 @@ const ProcedureCard = ({ name, description, icon: Icon }) => (
       transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75
       group-hover/card:translate-y-0 group-hover/card:opacity-100
     ">
-      <p className="text-sm font-light text-slate-300 leading-relaxed" style={{ fontFamily: "'Inter', sans-serif" }}>
+      <p className="text-sm font-light leading-relaxed" style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.6)' }}>
         {description}
       </p>
     </div>
@@ -65,10 +65,7 @@ const MarqueeRibbon = ({ items, speed = '160s' }) => {
 
   return (
     <div className="relative flex overflow-hidden w-full items-center py-12">
-      <div
-        className="flex items-center w-max"
-        style={{ animation: `scrollLeft ${speed} linear infinite` }}
-      >
+      <div className="marquee-track flex items-center w-max" style={{ '--marquee-duration': speed }}>
         <div className="flex items-center">
           {baseGroup.map((proc, index) => (
             <ProcedureCard
@@ -98,42 +95,42 @@ export default function ProceduresCarousel() {
   const procedures = [
     {
       name: 'Harmonização Facial',
-      description: 'Planejamento completo para equilíbrio e proporção dos traços faciais.',
+      description: 'Planejamento do rosto como um sistema — não como soma de procedimentos.',
       icon: User,
     },
     {
       name: 'Toxina Botulínica',
-      description: 'Suavização de rugas e linhas de expressão com resultado natural.',
+      description: 'Relaxamento muscular preciso. O objetivo é leveza, não imobilidade.',
       icon: Syringe,
     },
     {
       name: 'Preenchimento Labial',
-      description: 'Definição e volume labial com técnicas de alta precisão.',
+      description: 'Volume com proporção. O lábio acompanha o rosto, não o invade.',
       icon: Smile,
     },
     {
       name: 'Bioestimuladores',
-      description: 'Rejuvenescimento profundo com estimulação natural de colágeno.',
+      description: 'O corpo produz o que precisa. A técnica apenas ativa o processo.',
       icon: Sparkles,
     },
     {
       name: 'Rinomodelação',
-      description: 'Correção e refinamento do nariz sem cirurgia com alta precisão.',
+      description: 'Refinamento sem cirurgia. Pequenas correções com impacto visual significativo.',
       icon: Activity,
     },
     {
       name: 'Skinbooster',
-      description: 'Hidratação profunda e melhora da textura e luminosidade da pele.',
+      description: 'Hidratação profunda que muda a qualidade da pele, não apenas a aparência.',
       icon: Droplet,
     },
     {
       name: 'Contorno Facial',
-      description: 'Definição e remodelação do contorno do rosto para harmonia.',
+      description: 'Definição de ângulos e estrutura. O rosto ganha presença.',
       icon: Focus,
     },
     {
       name: 'Rejuvenescimento',
-      description: 'Protocolo combinado para restaurar leveza e vitalidade ao rosto.',
+      description: 'Protocolo combinado para restaurar leveza — sem apagar a identidade.',
       icon: Sun,
     },
   ];
@@ -151,6 +148,12 @@ export default function ProceduresCarousel() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
+        .marquee-track {
+          animation: scrollLeft var(--marquee-duration, 160s) linear infinite;
+        }
+        .marquee-wrapper:hover .marquee-track {
+          animation-play-state: paused;
+        }
       `}</style>
 
       {/* Background sutil */}
@@ -167,25 +170,18 @@ export default function ProceduresCarousel() {
             className="text-[10px] md:text-xs tracking-[0.4em] uppercase font-semibold"
             style={{ fontFamily: "'Inter', sans-serif", color: '#b08a3c' }}
           >
-            Especialidades
+            O que é realizado
           </p>
           <h2
             className="text-3xl md:text-5xl font-light tracking-wide"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: 'rgba(255,255,255,0.9)' }}
           >
-            Procedimentos realizados
+            Cada procedimento tem um propósito dentro do planejamento
           </h2>
-          {/* CFM disclaimer */}
-          <p
-            className="text-xs leading-relaxed max-w-md mx-auto"
-            style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.3)', letterSpacing: '0.02em' }}
-          >
-            A indicação de cada procedimento depende de avaliação profissional individual.
-          </p>
         </div>
 
         {/* Carrossel marquee */}
-        <div className="group relative w-full flex items-center">
+        <div className="marquee-wrapper relative w-full flex items-center">
           {/* Máscaras laterais */}
           <div className="absolute top-0 left-0 w-32 md:w-64 h-full z-40 pointer-events-none"
             style={{ background: 'linear-gradient(to right, #050505, transparent)' }} />
@@ -194,6 +190,14 @@ export default function ProceduresCarousel() {
 
           <MarqueeRibbon items={procedures} speed="160s" />
         </div>
+
+        {/* Disclaimer rodapé */}
+        <p
+          className="text-xs text-center leading-relaxed max-w-md mx-auto px-6"
+          style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,255,255,0.3)', letterSpacing: '0.02em' }}
+        >
+          A indicação de cada procedimento depende de avaliação profissional individual.
+        </p>
 
       </div>
     </section>
