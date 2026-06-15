@@ -25,13 +25,10 @@ const icons = [
 <section id="procedimentos" data-theme="dark" aria-label="Procedimentos realizados pela Dra. Jamilly Karla">
   <div class="procedimentos-inner">
     <div class="procedimentos-header">
-      <p class="overline animate-on-scroll" style="color: rgba(176,138,60,0.9)">Especialidades</p>
+      <p class="overline animate-on-scroll" style="color: rgba(176,138,60,0.9)">O que é realizado</p>
       <h2 class="heading-display procedimentos-title animate-on-scroll stagger-1">
-        Procedimentos realizados
+        Cada procedimento tem um propósito dentro do planejamento
       </h2>
-      <p class="cfm-disclaimer animate-on-scroll stagger-2">
-        A indicação de cada procedimento depende de avaliação profissional individual.
-      </p>
     </div>
 
     <div class="procedures-grid" role="list" aria-label="Lista de procedimentos">
@@ -46,6 +43,9 @@ const icons = [
         </div>
       ))}
     </div>
+    <p class="cfm-disclaimer animate-on-scroll">
+      A indicação de cada procedimento depende de avaliação profissional individual.
+    </p>
   </div>
 </section>
 
@@ -63,7 +63,7 @@ const icons = [
 
   .procedimentos-header {
     text-align: center;
-    max-width: 560px;
+    max-width: 720px;
     margin: 0 auto 64px;
   }
 
@@ -79,7 +79,8 @@ const icons = [
     color: rgba(255, 255, 255, 0.3);
     letter-spacing: 0.02em;
     line-height: 1.6;
-    margin: 0;
+    margin: 40px 0 0;
+    text-align: center;
   }
 
   .procedures-grid {

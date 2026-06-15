@@ -49,79 +49,79 @@ export const SEO = {
 export const PROCEDURES = [
   {
     name: 'Harmonização Facial',
-    description: 'Planejamento completo para equilíbrio e proporção dos traços faciais.',
+    description: 'Planejamento do rosto como um sistema — não como soma de procedimentos.',
   },
   {
     name: 'Toxina Botulínica',
-    description: 'Suavização de rugas e linhas de expressão com resultado natural.',
+    description: 'Relaxamento muscular preciso. O objetivo é leveza, não imobilidade.',
   },
   {
     name: 'Preenchimento Labial',
-    description: 'Definição e volume labial com técnicas de alta precisão.',
+    description: 'Volume com proporção. O lábio acompanha o rosto, não o invade.',
   },
   {
     name: 'Bioestimuladores de Colágeno',
-    description: 'Rejuvenescimento profundo com estimulação natural de colágeno.',
+    description: 'O corpo produz o que precisa. A técnica apenas ativa o processo.',
   },
   {
     name: 'Rinomodelação',
-    description: 'Correção e refinamento do nariz sem cirurgia.',
+    description: 'Refinamento sem cirurgia. Pequenas correções com impacto visual significativo.',
   },
   {
     name: 'Skinbooster',
-    description: 'Hidratação profunda e melhora da textura e luminosidade da pele.',
+    description: 'Hidratação profunda que muda a qualidade da pele, não apenas a aparência.',
   },
   {
     name: 'Contorno Facial',
-    description: 'Definição e remodelação do contorno do rosto com precisão.',
+    description: 'Definição de ângulos e estrutura. O rosto ganha presença.',
   },
   {
     name: 'Rejuvenescimento Facial',
-    description: 'Protocolo combinado para restaurar leveza e vitalidade ao rosto.',
+    description: 'Protocolo combinado para restaurar leveza — sem apagar a identidade.',
   },
 ] as const;
 
 export const METHOD_STEPS = [
   {
     number: '01',
-    title: 'Diagnóstico Facial',
+    title: 'Leitura Facial',
     description:
-      'Análise completa da estrutura, proporção e envelhecimento individuais antes de qualquer decisão.',
+      'Antes de qualquer decisão, o rosto é analisado como um todo: estrutura óssea, volume, proporção e o que o envelhecimento fez — ou ainda não fez.',
   },
   {
     number: '02',
-    title: 'Planejamento Individual',
+    title: 'Planejamento',
     description:
-      'Construção de um plano personalizado, considerando identidade, harmonia e objetivos da paciente.',
+      'Cada plano é construído para aquele rosto específico. Não existe protocolo padrão. Existe raciocínio.',
   },
   {
     number: '03',
-    title: 'Execução com Precisão',
+    title: 'Aplicação',
     description:
-      'Aplicação técnica com foco em naturalidade, segurança e resultados compatíveis com cada rosto.',
+      'A técnica serve ao planejamento. Não ao contrário. A execução é precisa porque o que vem antes dela é preciso.',
   },
   {
     number: '04',
     title: 'Acompanhamento',
     description:
-      'Acompanhamento contínuo dos resultados para garantir evolução e durabilidade do planejamento.',
+      'O resultado evolui. O acompanhamento garante que essa evolução esteja alinhada ao que foi planejado — e ao que a paciente queria.',
   },
 ] as const;
 
 export const TESTIMONIALS = [
   {
     name: 'Ana Carolina M.',
-    text: 'Resultado incrível. A Jamilly tem um olhar artístico único. Me sinto mais bonita e natural do que nunca.',
+    text: 'Fui com medo de sair diferente. Saí parecendo eu mesma — só mais descansada. Ninguém soube dizer o que eu fiz, mas todos notaram.',
     stars: 5,
   },
   {
     name: 'Fernanda S.',
-    text: 'Profissional excepcional. Avaliou cada detalhe antes de qualquer procedimento. Confiança total.',
+    text: 'O que me surpreendeu foi a consulta. Ela avaliou tudo antes de propor qualquer coisa. Me senti respeitada desde o início.',
     stars: 5,
   },
   {
     name: 'Renata L.',
-    text: 'O planejamento facial foi a melhor decisão que tomei. Resultados naturais e duradouros.',
+    text: 'Já fiz harmonização em outro lugar. Não é a mesma coisa. Aqui existe um raciocínio por trás de cada decisão.',
     stars: 5,
   },
 ] as const;
